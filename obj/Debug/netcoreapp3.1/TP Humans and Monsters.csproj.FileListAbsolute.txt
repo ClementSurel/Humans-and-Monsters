@@ -1,0 +1,11 @@
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.exe
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.deps.json
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.runtimeconfig.json
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.runtimeconfig.dev.json
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.dll
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\bin\Debug\netcoreapp3.1\TP Humans and Monsters.pdb
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\obj\Debug\netcoreapp3.1\TP Humans and Monsters.csprojAssemblyReference.cache
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\obj\Debug\netcoreapp3.1\TP Humans and Monsters.AssemblyInfoInputs.cache
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\obj\Debug\netcoreapp3.1\TP Humans and Monsters.AssemblyInfo.cs
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\obj\Debug\netcoreapp3.1\TP Humans and Monsters.dll
+C:\Users\Cleme\Documents\Programmation\DOCS & COURS\COURS C#\COURS 2 POO\POO\TP Humans and Monsters\obj\Debug\netcoreapp3.1\TP Humans and Monsters.pdb
