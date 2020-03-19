@@ -1,21 +1,50 @@
 ﻿using System;
 
-public class Monster : Personage
+abstract public class Monster : Personage
 {
-	public Monster(string name = "unknown") : base(name)
+	protected int pointsOfAggressivity;
+
+	public int aggressivity { get { return pointsOfAggressivity;} }
+
+	
+
+	public Monster(string name = "unknown") : base(name, ConsoleColor.DarkRed)
 	{
 	}
 
-	override public void nextMove()
+	override public bool nextMove(Dice dice)
 	{
 		if (isAlive)
-			attack();
+			attack(dice);
+
+		return isAlive;
 	}
 
-	public void attack()
+	public void attack(Dice dice)
 	{
-		Console.WriteLine(myName + " attacks " + target.name);
-		target.getHurt(8);
+		displayName(); Console.Write(" attacks "); target.displayName(); Console.WriteLine();
+		displayName(); Console.Write(" throws a dice of 10... ");
+		Console.WriteLine(dice.throwDice10());
+
+		target.getHurt(dice.scoreDice10);
 	}
 
 }
+
+public class littleMonster : Monster
+{
+	public littleMonster(string name = "Unknown") : base(name)
+	{
+		pointsOfAggressivity = 2;
+	}
+
+}
+
+public class bigMonster : Monster
+{
+	public bigMonster(string name = "Unknown") : base(name)
+	{
+		pointsOfAggressivity = 5;
+	}
+}
+

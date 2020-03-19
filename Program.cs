@@ -1,16 +1,22 @@
 ﻿using System;
 
-namespace TP_Humans_and_Monsters
+namespace Humans_and_Monsters
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Humans and Monsters" + Environment.NewLine);
+            // Display title
+            for (int i = 0; i < 3; i++)
+                Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Humans and Monsters");
+            for (int i = 0; i < 3; i++)
+                Console.WriteLine(Environment.NewLine);
 
+            // Start a new game
             Game game = new Game();
 
-            Console.WriteLine(Environment.NewLine);
+            // Display end of the program
             Console.WriteLine("The game is now over.");
             Console.WriteLine("Press any key to quit.");
             Console.ReadKey(true);

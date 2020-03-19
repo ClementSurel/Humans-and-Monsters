@@ -4,23 +4,33 @@ using System.Collections.Generic;
 
 abstract public class Personage
 {
-	protected string myName; 
+	protected string myName;
+	private ConsoleColor color; 
 	protected int pointsOfLife;
-	protected List<Action> actions;
+	protected List<string> actions;
 	protected Personage target;
 
-	public Personage(string name = "Unknown")
+	public Personage(string name = "Unknown", ConsoleColor c = ConsoleColor.White)
 	{
 		myName = name;
+		color = c;
+
 		pointsOfLife = 100;
 
-		actions = new List<Action>();
+		actions = new List<string>();
 		target = null;
 	}
 
 	public int life { get { return pointsOfLife; } }
 
 	public string name {  get { return myName; } }
+
+	public void displayName()
+	{
+		Console.ForegroundColor = color;
+		Console.Write(myName);
+		Console.ForegroundColor = ConsoleColor.White;
+	}
 
 	public bool isAlive {  get { return (pointsOfLife > 0); } }
 
@@ -31,13 +41,14 @@ abstract public class Personage
 
 		if (pointsOfLife - points < 0)
 			points = pointsOfLife;
+
 		pointsOfLife -= points;
-		Console.WriteLine(myName + " got hurt and lost " + points + " points of life");
+		displayName(); Console.WriteLine(" got hurt and lost " + points + " points of life");
 		Console.WriteLine("New points of life : " + pointsOfLife);
-		Console.WriteLine(Environment.NewLine);
+		Console.WriteLine();
 	}
 
-	abstract public void nextMove();
+	abstract public bool nextMove(Dice dice);
 
 	public void defineTarget(Personage p)
 	{
