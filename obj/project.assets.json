@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cleme\\Documents\\Programmation\\DOCS & COURS\\COURS C#\\COURS 2 POO\\POO\\TP Humans and Monsters\\TP Humans and Monsters.csproj",
-      "projectName": "TP Humans and Monsters",
-      "projectPath": "C:\\Users\\Cleme\\Documents\\Programmation\\DOCS & COURS\\COURS C#\\COURS 2 POO\\POO\\TP Humans and Monsters\\TP Humans and Monsters.csproj",
+      "projectUniqueName": "C:\\Users\\Cleme\\Documents\\Programmation\\JEUX\\Humans and Monsters\\Humans and Monsters.csproj",
+      "projectName": "Humans and Monsters",
+      "projectPath": "C:\\Users\\Cleme\\Documents\\Programmation\\JEUX\\Humans and Monsters\\Humans and Monsters.csproj",
       "packagesPath": "C:\\Users\\Cleme\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cleme\\Documents\\Programmation\\DOCS & COURS\\COURS C#\\COURS 2 POO\\POO\\TP Humans and Monsters\\obj\\",
+      "outputPath": "C:\\Users\\Cleme\\Documents\\Programmation\\JEUX\\Humans and Monsters\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Cleme\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

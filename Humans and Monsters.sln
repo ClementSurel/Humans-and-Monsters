@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humans and Monsters", "Humans and Monsters.csproj", "{DCA5BC46-706A-497C-924E-63C43EE0BA1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_console_output", "..\test_console_output\test_console_output.csproj", "{C9097CC3-98B4-4840-934B-0111A13AF0E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCA5BC46-706A-497C-924E-63C43EE0BA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA5BC46-706A-497C-924E-63C43EE0BA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA5BC46-706A-497C-924E-63C43EE0BA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA5BC46-706A-497C-924E-63C43EE0BA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9097CC3-98B4-4840-934B-0111A13AF0E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9097CC3-98B4-4840-934B-0111A13AF0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9097CC3-98B4-4840-934B-0111A13AF0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9097CC3-98B4-4840-934B-0111A13AF0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E5988B0-36CA-4B92-B9BB-A1A172694D93}
+	EndGlobalSection
+EndGlobal

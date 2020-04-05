@@ -17,14 +17,14 @@ public class Dice
 
 	public int throwDice6()
 	{
-		lastScore = rand.Next(1, 6);
+		lastScore = rand.Next(6) + 1;
 
 		return lastScore;
 	}
 
 	public int throwDice10()
 	{
-		lastScoreDice10 = rand.Next(1, 10);
+		lastScoreDice10 = rand.Next(10) + 1;
 
 		return lastScoreDice10;
 	}

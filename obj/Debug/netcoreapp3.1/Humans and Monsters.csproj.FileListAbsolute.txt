@@ -1,0 +1,13 @@
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.exe
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.deps.json
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.runtimeconfig.json
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.runtimeconfig.dev.json
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.dll
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\bin\Debug\netcoreapp3.1\Humans and Monsters.pdb
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.csprojAssemblyReference.cache
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.csproj.CoreCompileInputs.cache
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.AssemblyInfoInputs.cache
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.AssemblyInfo.cs
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.dll
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.pdb
+C:\Users\Cleme\Documents\Programmation\JEUX\Humans and Monsters\obj\Debug\netcoreapp3.1\Humans and Monsters.genruntimeconfig.cache

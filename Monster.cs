@@ -22,13 +22,13 @@ abstract public class Monster : Personage
 
 	public void attack(Dice dice)
 	{
+		Display.fight(target, this);
 		displayName(); Console.Write(" attacks "); target.displayName(); Console.WriteLine();
 		displayName(); Console.Write(" throws a dice of 10... ");
 		Console.WriteLine(dice.throwDice10());
 
 		target.getHurt(dice.scoreDice10);
 	}
-
 }
 
 public class littleMonster : Monster

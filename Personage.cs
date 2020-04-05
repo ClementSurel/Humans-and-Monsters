@@ -1,51 +1,45 @@
 ﻿using System;
-
 using System.Collections.Generic;
 
 abstract public class Personage
 {
-	protected string myName;
+	public string name { get; protected set; }
 	private ConsoleColor color; 
-	protected int pointsOfLife;
+	public int life { get; protected set; }
+	public bool isAlive { get { return (life > 0); } }
 	protected List<string> actions;
 	protected Personage target;
 
 	public Personage(string name = "Unknown", ConsoleColor c = ConsoleColor.White)
 	{
-		myName = name;
+		this.name = name;
 		color = c;
 
-		pointsOfLife = 100;
+		life = 100;
 
 		actions = new List<string>();
 		target = null;
 	}
 
-	public int life { get { return pointsOfLife; } }
-
-	public string name {  get { return myName; } }
-
 	public void displayName()
 	{
 		Console.ForegroundColor = color;
-		Console.Write(myName);
+		Console.Write(name);
 		Console.ForegroundColor = ConsoleColor.White;
 	}
-
-	public bool isAlive {  get { return (pointsOfLife > 0); } }
 
 	public void getHurt(int points)
 	{
 		if (points <= 0)
 			return;
 
-		if (pointsOfLife - points < 0)
-			points = pointsOfLife;
+		if (life - points < 0)
+			points = life;
 
-		pointsOfLife -= points;
+		life -= points;
 		displayName(); Console.WriteLine(" got hurt and lost " + points + " points of life");
-		Console.WriteLine("New points of life : " + pointsOfLife);
-		Console.WriteLine();
+		Console.Write("..."); Console.ReadKey();
+		Display.fight(this, target);
 	}
 
 	abstract public bool nextMove(Dice dice);
@@ -55,4 +49,17 @@ abstract public class Personage
 		target = p;
 	}
 
+	void displayStats()
+	{
+		displayName(); Console.WriteLine(" :");
+		Console.Write("Life : "); Console.WriteLine(life);
+	}
+
+	virtual public List<string> getStats()
+	{
+		List<string> stats = new List<string>();
+		stats.Add("Life : " + life);
+
+		return stats;
+	}
 }

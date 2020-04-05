@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class Player : Personage
 {
@@ -13,7 +14,7 @@ public class Player : Personage
 		Console.WriteLine("Enter your name : ");
 		Console.SetCursorPosition(1, Console.CursorTop);
 		Console.ForegroundColor = ConsoleColor.DarkBlue;
-		myName = Console.ReadLine();
+		name = Console.ReadLine();
 		Console.ForegroundColor = ConsoleColor.White;
 		Console.WriteLine(Environment.NewLine + Environment.NewLine);
 
@@ -24,10 +25,19 @@ public class Player : Personage
 
 	public void printStats()
 	{
-		Console.Write("Name : "); displayName(); Console.WriteLine();
-		Console.WriteLine("Life : " + pointsOfLife);
+		displayName(); Console.WriteLine();
+		Console.WriteLine("Life : " + life);
 		Console.WriteLine("Exp : " + pointsOfExp);
 		Console.WriteLine(Environment.NewLine);
+	}
+
+	override public List<string> getStats()
+	{
+		List<string> stats = base.getStats();
+
+		stats.Add("Exp :" + pointsOfExp);
+
+		return stats;
 	}
 
 	override public bool nextMove(Dice dice)
@@ -61,7 +71,8 @@ public class Player : Personage
 
 	public void attack (Dice dice)
 	{
-		displayName(); Console.Write(" attacks "); target.displayName(); Console.WriteLine();
+		Display.fight(this, target);
+		displayName(); Console.Write(" attacks "); target.displayName(); Console.Write(Environment.NewLine);
 		displayName(); Console.Write(" throws a dice of 10... ");
 		Console.WriteLine(dice.throwDice10());
 
