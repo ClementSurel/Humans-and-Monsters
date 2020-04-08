@@ -18,33 +18,36 @@ public class Game
 		player.defineTarget(monster);
 
 		// Start
-		Console.WriteLine("Start a new game");
-		Console.WriteLine(Environment.NewLine);
-		Console.WriteLine("There is a monster in the room");
-		Console.WriteLine(Environment.NewLine);
+		Display.SetStoryMode();
+		Display.write("You are in a room."); Display.write(Environment.NewLine);
+		Display.write("A monster enters in the room."); Display.write(Environment.NewLine);
+		Display.write(Environment.NewLine);
+		Display.wait();
 
 		// Play game
 		while (continueGame)
 		{
 			if (!player.nextMove(dice))
 			{
-				Console.WriteLine("You are dead!");
-				Console.WriteLine(Environment.NewLine);
+				Display.SetStoryMode();
+				Display.write("You are dead!" + Environment.NewLine, ConsoleColor.DarkRed);
+				Display.write(Environment.NewLine);
 				endOfGame();
 				break;
 			}
 
 			if (!monster.nextMove(dice))
-			{ 
-				Console.WriteLine("The monster is dead.");
-				Console.WriteLine(Environment.NewLine);
+			{
+				Display.SetStoryMode();
+				Display.write("The monster is dead." + Environment.NewLine);
 				
 				// Create a new monster
 				monster = new bigMonster("The monster");
 				monster.defineTarget(player);
 				player.defineTarget(monster);
-				Console.WriteLine("A new monster enters in the room.");
-				Console.WriteLine(Environment.NewLine);
+				Display.write("A new monster enters in the room." + Environment.NewLine);
+				Display.write(Environment.NewLine);
+				Display.wait();
 			}
 
 		} // while continue game
@@ -53,9 +56,12 @@ public class Game
 
 	private void endOfGame()
 	{
-		Console.WriteLine("Your final stats : ");
-		Console.WriteLine(Environment.NewLine);
-		player.printStats();
+		Display.SetStoryMode();
+		Display.write("Your final stats : " + Environment.NewLine);
+
+		foreach (string s in player.getStats())
+			Display.write(s + Environment.NewLine);
+		Display.write(Environment.NewLine);
 	}
 
 

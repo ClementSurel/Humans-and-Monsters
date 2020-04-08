@@ -22,10 +22,10 @@ abstract public class Monster : Personage
 
 	public void attack(Dice dice)
 	{
-		Display.fight(target, this);
-		displayName(); Console.Write(" attacks "); target.displayName(); Console.WriteLine();
-		displayName(); Console.Write(" throws a dice of 10... ");
-		Console.WriteLine(dice.throwDice10());
+		Display.setFightMode(target as Player, this);
+		Display.write(name, color); Display.write(" attacks "); Display.write(target.name, target.color); Display.write(Environment.NewLine);
+		Display.write(name, color); Display.write(" throws a dice of 10... ");
+		Display.write(dice.throwDice10() + Environment.NewLine);
 
 		target.getHurt(dice.scoreDice10);
 	}

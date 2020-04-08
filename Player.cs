@@ -7,28 +7,16 @@ public class Player : Personage
 
 	public int exp { get { return pointsOfExp; } }
 
-	
-
 	public Player() : base ("The player", ConsoleColor.DarkBlue)
 	{
-		Console.WriteLine("Enter your name : ");
-		Console.SetCursorPosition(1, Console.CursorTop);
-		Console.ForegroundColor = ConsoleColor.DarkBlue;
-		name = Console.ReadLine();
-		Console.ForegroundColor = ConsoleColor.White;
-		Console.WriteLine(Environment.NewLine + Environment.NewLine);
+		Display.write("Enter your name : " + Environment.NewLine);
+		name = Display.string_input(ConsoleColor.DarkBlue);
+		Display.write(Environment.NewLine);
+		Display.write(Environment.NewLine);
 
 		actions.Add("Attack");
 
 		pointsOfExp = 0;
-	}
-
-	public void printStats()
-	{
-		displayName(); Console.WriteLine();
-		Console.WriteLine("Life : " + life);
-		Console.WriteLine("Exp : " + pointsOfExp);
-		Console.WriteLine(Environment.NewLine);
 	}
 
 	override public List<string> getStats()
@@ -47,21 +35,18 @@ public class Player : Personage
 
 		int playerChoose = -1;
 
-		Console.WriteLine("Which action do you choose?");
+		Display.write("Which action do you choose?" + Environment.NewLine);
 		
 		for (int i = 0; i < actions.Count; i++)
 		{
-			Console.WriteLine(i+1 + ". " + actions[i]);
+			Display.write(i+1 + ". " + actions[i] + Environment.NewLine);
 		}
 
-		Console.SetCursorPosition(1, Console.CursorTop);
-		while (!Int32.TryParse(Console.ReadLine(), out playerChoose)
+		while (!Int32.TryParse(Display.string_input(), out playerChoose)
 			|| playerChoose <= 0 || playerChoose > actions.Count)
 		{
-			Console.WriteLine("Wrong answer. Please, retype!");
-			Console.SetCursorPosition(1, Console.CursorTop);
+			Display.write("Wrong answer. Please, retype!" + Environment.NewLine);
 		}
-		Console.WriteLine(Environment.NewLine);
 
 		if (playerChoose == 1)
 			attack(dice);
@@ -71,20 +56,21 @@ public class Player : Personage
 
 	public void attack (Dice dice)
 	{
-		Display.fight(this, target);
-		displayName(); Console.Write(" attacks "); target.displayName(); Console.Write(Environment.NewLine);
-		displayName(); Console.Write(" throws a dice of 10... ");
-		Console.WriteLine(dice.throwDice10());
+		Display.setFightMode(this, target);
+
+		Display.write(name, color); Display.write(" attacks "); Display.write(target.name, target.color); Display.write(Environment.NewLine);
+		Display.write(name, color); Display.write(" throws a dice of 10... ");
+		Display.write(dice.throwDice10() + Environment.NewLine);
 
 		target.getHurt(dice.scoreDice10);
 
 		if (!target.isAlive)
 		{
-			displayName(); Console.Write(" kills "); target.displayName(); Console.WriteLine();
-			displayName(); Console.WriteLine(" earns 1 point of experience.");
+			Display.write(name, color); Display.write(" kills "); Display.write(target.name, target.color); Display.write(Environment.NewLine);
+			Display.write(name, color); Display.write(" earns 1 point of experience." + Environment.NewLine);
 			pointsOfExp += (target as Monster).aggressivity;
 			target = null;
-			Console.WriteLine(Environment.NewLine);
+			Display.write(Environment.NewLine);
 		}
 
 	}

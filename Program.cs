@@ -6,20 +6,16 @@ namespace Humans_and_Monsters
     {
         static void Main(string[] args)
         {
-            // Display title
-            for (int i = 0; i < 3; i++)
-                Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Humans and Monsters");
-            for (int i = 0; i < 3; i++)
-                Console.WriteLine(Environment.NewLine);
-
+            Display.title();
+            
             // Start a new game
             Game game = new Game();
 
             // Display end of the program
-            Console.WriteLine("The game is now over.");
-            Console.WriteLine("Press any key to quit.");
-            Console.ReadKey(true);
+            Display.write("The game is now over." + Environment.NewLine);
+            Display.write("Press any key to quit." + Environment.NewLine);
+            Display.write(Environment.NewLine);
+            Display.wait();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 abstract public class Personage
 {
 	public string name { get; protected set; }
-	private ConsoleColor color; 
+	public ConsoleColor color { get; }
 	public int life { get; protected set; }
 	public bool isAlive { get { return (life > 0); } }
 	protected List<string> actions;
@@ -21,13 +21,6 @@ abstract public class Personage
 		target = null;
 	}
 
-	public void displayName()
-	{
-		Console.ForegroundColor = color;
-		Console.Write(name);
-		Console.ForegroundColor = ConsoleColor.White;
-	}
-
 	public void getHurt(int points)
 	{
 		if (points <= 0)
@@ -37,9 +30,10 @@ abstract public class Personage
 			points = life;
 
 		life -= points;
-		displayName(); Console.WriteLine(" got hurt and lost " + points + " points of life");
-		Console.Write("..."); Console.ReadKey();
-		Display.fight(this, target);
+		Display.write(name, color); Display.write(" got hurt and lost " + points + " points of life" + Environment.NewLine);
+		Display.write("..."); Display.wait();
+		Display.write(Environment.NewLine);
+		Display.write(Environment.NewLine);
 	}
 
 	abstract public bool nextMove(Dice dice);
@@ -47,12 +41,6 @@ abstract public class Personage
 	public void defineTarget(Personage p)
 	{
 		target = p;
-	}
-
-	void displayStats()
-	{
-		displayName(); Console.WriteLine(" :");
-		Console.Write("Life : "); Console.WriteLine(life);
 	}
 
 	virtual public List<string> getStats()

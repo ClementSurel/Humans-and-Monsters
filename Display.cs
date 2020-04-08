@@ -2,53 +2,242 @@
 using System.Collections.Generic;
 
 
-public class Display
+public static class Display
 {
-	public Display()
+	private static List<string> storyLines = new List<string>();
+	private static List<string> fightLines = new List<string>();
+	static private List<string> actLines = storyLines;
+	private static int currentIndex = 0;
+	private static int nWrittenLines = 0;
+
+	private static ConsoleColor actColor = ConsoleColor.White;
+
+	private static Player player = null;
+	private static Personage opponent = null;
+
+	public enum Mode { STORY, FIGHT }
+	private static Mode actualMode = Mode.STORY;
+	private static Mode lastMode = Mode.STORY;
+
+	public enum Position { LEFT, CENTER}
+	private static Position actPos = Position.LEFT;
+
+	static private Mode mode
 	{
+		get 
+		{
+			return actualMode;
+		}
+		set
+		{
+			lastMode = actualMode;
+			if (lastMode == Mode.STORY)
+			{
+				storyLines.Add(Environment.NewLine + Environment.NewLine);
+				storyLines.Add("..." + Environment.NewLine);
+				storyLines.Add(Environment.NewLine);
+			}
+
+			actualMode = value;
+			if (value == Mode.STORY)
+				actLines = storyLines;
+			else
+				actLines = fightLines;
+
+			currentIndex = 0;
+		}
 	}
 
-	static public void fight(Personage a, Personage b)
+	static public void title()
 	{
-		Personage m;
-		if (b is Player)
+		for (int i = 0; i < 3; i++)
+			write(Environment.NewLine);
+
+		write("Humans and Monsters", ConsoleColor.DarkRed, Position.CENTER);
+		
+		for (int i = 0; i < 3; i++)
+			write(Environment.NewLine);
+
+	}
+
+	static public void write(string line, ConsoleColor color = ConsoleColor.White, Position pos = Position.LEFT)
+	{
+		if (color != actColor)
 		{
-			m = a;
-			a = b;
-			b = m;
+			switch (color)
+			{
+				case ConsoleColor.DarkRed:
+					actLines.Add("<DR>");
+					break;
+				case ConsoleColor.DarkBlue:
+					actLines.Add("<DB>");
+					break;
+				case ConsoleColor.White:
+					actLines.Add("<W>");
+					break;
+				default:
+					break;
+			}
+			actColor = color;
 		}
 
+		if (pos != actPos)
+		{
+			if (pos == Position.LEFT)
+				actLines.Add("<LEFT>");
+			else if (pos == Position.CENTER)
+				actLines.Add("<CENTER>");
+
+			actPos = pos;
+		}
+
+		actLines.Add(line);
+	}
+
+	static private void sendToConsole ()
+	{
+		actPos = Position.LEFT;
+		int centerFrom = 0;
+		int width = 0;
+
+		if (currentIndex == 0)
+		{ 
+			if (mode == Mode.STORY)
+			{
+				Console.Clear();
+				nWrittenLines = 0;
+			}
+			else if (mode == Mode.FIGHT)
+			{ 
+				nWrittenLines = updateStats();
+			}
+		}
+
+		foreach (string line in actLines.GetRange(currentIndex, actLines.Count - currentIndex))
+		{
+			if (line == "<DR>")
+				Console.ForegroundColor = ConsoleColor.DarkRed;
+			else if (line == "<W>")
+				Console.ForegroundColor = ConsoleColor.White;
+			else if (line == "<DB>")
+				Console.ForegroundColor = ConsoleColor.DarkBlue;
+			else if (line == "<CENTER>")
+			{
+				if (actPos != Position.CENTER)
+				{
+					actPos = Position.CENTER;
+					centerFrom = nWrittenLines;
+					width = 0;
+				}
+			}
+			else if (line == "<LEFT>")
+			{
+				switch (actPos)
+				{
+					case Position.CENTER:
+						Console.MoveBufferArea(0, centerFrom, width, nWrittenLines - centerFrom,
+							Console.WindowWidth/2 - width/2, centerFrom);
+						break;
+					default:
+						break;
+				}
+				actPos = Position.LEFT;
+			}
+			else
+			{
+				Console.Write(line);
+				width = line.Length;
+				nWrittenLines++;
+			}
+			currentIndex++;
+		}
+
+		actPos = Position.LEFT;
+	}
+
+	static private int updateStats()
+	{
 		Console.Clear();
-		List<string> statsa = a.getStats();
-		List<string> statsb = b.getStats();
 
-		int wa = 0, ha = 0, wb = 0, hb = 0;
+		List<string> playerStats = player.getStats();
+		List<string> oppStats = opponent.getStats();
 
-		a.displayName(); Console.WriteLine();
-		wa = a.name.Length;
-		ha++;
-		foreach (string line in statsa)
+		int wp = 0, hp = 0, wo = 0, ho = 0;
+
+		Console.ForegroundColor = player.color; Console.Write(player.name);
+		Console.ForegroundColor = ConsoleColor.White; Console.WriteLine();
+		wp = player.name.Length;
+		hp++;
+		foreach (string line in playerStats)
 		{
-			if (wa < line.Length)
-				wa = line.Length;
-			ha++;
+			if (wp < line.Length)
+				wp = line.Length;
+			hp++;
 			Console.WriteLine(line);
 		}
 
-		b.displayName(); Console.WriteLine();
-		wb = b.name.Length;
-		hb++;
-		foreach (string line in statsb)
+		Console.ForegroundColor = opponent.color; Console.Write(opponent.name);
+		Console.ForegroundColor = ConsoleColor.White; Console.WriteLine();
+		wo = opponent.name.Length;
+		ho++;
+		foreach (string line in oppStats)
 		{
-			if (wb < line.Length)
-				wb = line.Length;
-			hb++;
+			if (wo < line.Length)
+				wo = line.Length;
+			ho++;
 			Console.WriteLine(line);
 		}
 
-		if (Console.BufferWidth < wa + wb + 1)
-			Console.BufferWidth = wa + wb + 1;
-		Console.MoveBufferArea(0, ha, wb, hb, Console.WindowWidth - wb, 0);
+		if (Console.BufferWidth < wp + wo + 1)
+			Console.BufferWidth = wp + wo + 1;
+		Console.MoveBufferArea(0, hp, wo, ho, Console.WindowWidth - wo, 0);
 
+		return Math.Max(hp, ho);
+	}
+
+	static public void wait()
+	{
+		sendToConsole();
+		Console.ReadKey(true);
+	}
+
+	static public string string_input(ConsoleColor color = ConsoleColor.White)
+	{
+		string input;
+
+		sendToConsole();
+		Console.ForegroundColor = color;
+		Console.SetCursorPosition(2, Console.CursorTop);
+		input = Console.ReadLine();
+		if (color != actColor)
+			currentIndex += 2;
+		else
+			currentIndex++;
+		write("  " + input, color);
+		Console.ForegroundColor = actColor;
+
+		return input;
+	}
+
+	static public void resetMode()
+	{
+		wait();
+		mode = lastMode;
+		currentIndex = 0;
+	}
+
+	static public void setFightMode(Player p, Personage opp)
+	{
+		mode = Mode.FIGHT;
+		player = p;
+		opponent = opp;
+
+		fightLines.Clear();
+	}
+
+	static public void SetStoryMode()
+	{
+		if (actualMode != Mode.STORY)
+			mode = Mode.STORY;
 	}
 }
