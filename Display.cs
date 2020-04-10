@@ -57,7 +57,6 @@ public static class Display
 		
 		for (int i = 0; i < 3; i++)
 			write(Environment.NewLine);
-
 	}
 
 	static public void write(string line, ConsoleColor color = ConsoleColor.White, Position pos = Position.LEFT)
@@ -94,8 +93,32 @@ public static class Display
 		actLines.Add(line);
 	}
 
+	static private void sendToConsole_raw()
+	{
+		if (currentIndex == 0)
+		{
+			if (mode == Mode.STORY)
+			{
+				Console.Clear();
+				nWrittenLines = 0;
+			}
+			else if (mode == Mode.FIGHT)
+			{
+				nWrittenLines = updateStats();
+			}
+		}
+
+		foreach (string line in actLines.GetRange(currentIndex, actLines.Count - currentIndex))
+		{
+				Console.Write(line);
+		}
+
+		Console.ReadKey();
+	}
 	static private void sendToConsole ()
 	{
+		sendToConsole_raw();
+
 		actPos = Position.LEFT;
 		int centerFrom = 0;
 		int width = 0;
