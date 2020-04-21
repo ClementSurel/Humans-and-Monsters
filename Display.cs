@@ -4,23 +4,22 @@ using System.Collections.Generic;
 
 public static class Display
 {
-	private static List<string> storyLines = new List<string>();
-	private static List<string> fightLines = new List<string>();
+	static private List<string> storyLines = new List<string>();
+	static private List<string> fightLines = new List<string>();
 	static private List<string> actLines = storyLines;
-	private static int currentIndex = 0;
-	private static int nWrittenLines = 0;
+	static private int currentIndex = 0;
+	static private int nWrittenLines = 0;
 
-	private static ConsoleColor actColor = ConsoleColor.White;
+	static private ConsoleColor actColor = ConsoleColor.White;
 
-	private static Player player = null;
-	private static Personage opponent = null;
+	static private Player player = null;
+	static private Personage opponent = null;
 
 	public enum Mode { STORY, FIGHT }
-	private static Mode actualMode = Mode.STORY;
-	private static Mode lastMode = Mode.STORY;
-
+	static private Mode actualMode = Mode.STORY;
+	static private Mode lastMode = Mode.STORY;
 	public enum Position { LEFT, CENTER}
-	private static Position actPos = Position.LEFT;
+	static private Position actPos = Position.LEFT;
 
 	static private Mode mode
 	{
@@ -117,7 +116,8 @@ public static class Display
 	}
 	static private void sendToConsole ()
 	{
-		sendToConsole_raw();
+		// FOR DEBUG
+		// sendToConsole_raw();
 
 		actPos = Position.LEFT;
 		int centerFrom = 0;
