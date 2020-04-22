@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cleme\\Documents\\GitHub\\Humans-and-Monsters\\Humans and Monsters.csproj": {}
+    "C:\\Users\\Cleme\\Documents\\Dev\\JEUX\\Humans and monters\\Humans and Monsters.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cleme\\Documents\\GitHub\\Humans-and-Monsters\\Humans and Monsters.csproj": {
+    "C:\\Users\\Cleme\\Documents\\Dev\\JEUX\\Humans and monters\\Humans and Monsters.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cleme\\Documents\\GitHub\\Humans-and-Monsters\\Humans and Monsters.csproj",
+        "projectUniqueName": "C:\\Users\\Cleme\\Documents\\Dev\\JEUX\\Humans and monters\\Humans and Monsters.csproj",
         "projectName": "Humans and Monsters",
-        "projectPath": "C:\\Users\\Cleme\\Documents\\GitHub\\Humans-and-Monsters\\Humans and Monsters.csproj",
+        "projectPath": "C:\\Users\\Cleme\\Documents\\Dev\\JEUX\\Humans and monters\\Humans and Monsters.csproj",
         "packagesPath": "C:\\Users\\Cleme\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cleme\\Documents\\GitHub\\Humans-and-Monsters\\obj\\",
+        "outputPath": "C:\\Users\\Cleme\\Documents\\Dev\\JEUX\\Humans and monters\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cleme\\AppData\\Roaming\\NuGet\\NuGet.Config",

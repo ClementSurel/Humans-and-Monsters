@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
+public interface IFighter
+{
+	public string name { get;}
+	public bool isAlive { get; }
+	bool nextFightAction(Dice dice);
+
+	void defineTarget(IFighter opp);
+}
+
+
 abstract public class Personage
 {
 	public string name { get; protected set; }
 	public ConsoleColor color { get; }
 	public int life { get; protected set; }
 	public bool isAlive { get { return (life > 0); } }
-	protected List<string> actions;
 	protected Personage target;
 
 	public Personage(string name = "Unknown", ConsoleColor c = ConsoleColor.White)
@@ -17,7 +27,6 @@ abstract public class Personage
 
 		life = 100;
 
-		actions = new List<string>();
 		target = null;
 	}
 
@@ -36,12 +45,6 @@ abstract public class Personage
 		Display.write(Environment.NewLine);
 	}
 
-	abstract public bool nextMove(Dice dice);
-
-	public void defineTarget(Personage p)
-	{
-		target = p;
-	}
 
 	virtual public List<string> getStats()
 	{

@@ -114,6 +114,7 @@ public static class Display
 
 		Console.ReadKey();
 	}
+
 	static private void sendToConsole ()
 	{
 		// FOR DEBUG
@@ -174,8 +175,6 @@ public static class Display
 			}
 			currentIndex++;
 		}
-
-		actPos = Position.LEFT;
 	}
 
 	static private int updateStats()
@@ -236,7 +235,7 @@ public static class Display
 			currentIndex += 2;
 		else
 			currentIndex++;
-		write("  " + input, color);
+		write("  " + input + Environment.NewLine, color);
 		Console.ForegroundColor = actColor;
 
 		return input;
@@ -256,6 +255,12 @@ public static class Display
 		opponent = opp;
 
 		fightLines.Clear();
+	}
+
+	static public void newFightScreen()
+	{
+		fightLines.Clear();
+		currentIndex = 0;
 	}
 
 	static public void SetStoryMode()
