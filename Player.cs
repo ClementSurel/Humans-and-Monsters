@@ -12,7 +12,8 @@ public class Player : Personage, IFighter
 	public Player () : base ("The player", ConsoleColor.DarkBlue)
 	{
 		Display.write("Enter your name : " + Environment.NewLine);
-		name = Display.string_input(ConsoleColor.DarkBlue);
+		Display.write("  ");
+		name = Display.getInput(ConsoleColor.DarkBlue);
 		Display.write(Environment.NewLine);
 		Display.write(Environment.NewLine);
 
@@ -33,7 +34,7 @@ public class Player : Personage, IFighter
 		return stats;
 	}
 
-	public gameAction nextMove(List<gameAction> gas)
+	public GameAction nextMove(List<GameAction> gas)
 	{
 		int playerChoice = -1;
 
@@ -43,11 +44,13 @@ public class Player : Personage, IFighter
 		{
 			Display.write((i + 1) + ". " + gas[i].name + Environment.NewLine);
 		}
+		Display.write("  ");
 
-		while (!Int32.TryParse(Display.string_input(), out playerChoice)
+		while (!Int32.TryParse(Display.getInput(), out playerChoice)
 			|| playerChoice <= 0 || playerChoice > gas.Count)
 		{
 			Display.write("Wrong answer. Please, retype!" + Environment.NewLine);
+			Display.write("  ");
 		}
 		Display.write(Environment.NewLine);
 
@@ -68,11 +71,13 @@ public class Player : Personage, IFighter
 		{
 			Display.write(i + 1 + ". " + fightActions[i] + Environment.NewLine);
 		}
+		Display.write("  ");
 
-		while (!Int32.TryParse(Display.string_input(), out playerChoose)
+		while (!Int32.TryParse(Display.getInput(), out playerChoose)
 			|| playerChoose <= 0 || playerChoose > actions.Count)
 		{
 			Display.write("Wrong answer. Please, retype!" + Environment.NewLine);
+			Display.write("  ");
 		}
 
 		if (playerChoose == 1)

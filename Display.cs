@@ -9,21 +9,14 @@ public static class Display
 	static private List<string> actLines = storyLines;
 	static private int currentIndex = 0;
 	static private int nWrittenLines = 0;
-
 	static private ConsoleColor actColor = ConsoleColor.White;
-
+	// In fight mode
 	static private Player player = null;
-	static private Personage opponent = null;
-
-	public enum Mode { STORY, FIGHT }
-	static private Mode actualMode = Mode.STORY;
-	static private Mode lastMode = Mode.STORY;
-	public enum Position { LEFT, CENTER}
-	static private Position actPos = Position.LEFT;
-
+	static private IFighter opponent = null;
+	// Mode
 	static private Mode mode
 	{
-		get 
+		get
 		{
 			return actualMode;
 		}
@@ -46,18 +39,63 @@ public static class Display
 			currentIndex = 0;
 		}
 	}
+	public enum Mode { STORY, FIGHT }
+	static private Mode actualMode = Mode.STORY;
+	static private Mode lastMode = Mode.STORY;
+	public enum Position { LEFT, CENTER}
+	static private Position actPos = Position.LEFT;
 
+
+	// Refresh and print title
 	static public void title()
 	{
+		Console.Clear();
+		storyLines.Clear();
+		fightLines.Clear();
+		currentIndex = 0;
+		actualMode = Mode.STORY;
+		actColor = ConsoleColor.White;
+
 		for (int i = 0; i < 3; i++)
 			write(Environment.NewLine);
 
 		write("Humans and Monsters", ConsoleColor.DarkRed, Position.CENTER);
-		
+
 		for (int i = 0; i < 3; i++)
 			write(Environment.NewLine);
 	}
 
+	// Mode control
+	static public void SetStoryMode()
+	{
+		if (actualMode != Mode.STORY)
+			mode = Mode.STORY;
+	}
+
+	static public void setFightMode(Player p, IFighter opp)
+	{
+		mode = Mode.FIGHT;
+		player = p;
+		opponent = opp;
+
+		fightLines.Clear();
+	}
+
+	static public void resetMode()
+	{
+		wait();
+		mode = lastMode;
+		currentIndex = 0;
+	}
+
+	// Fight Mode control
+	static public void newFightScreen()
+	{
+		fightLines.Clear();
+		currentIndex = 0;
+	}
+
+	// Read/Write functions
 	static public void write(string line, ConsoleColor color = ConsoleColor.White, Position pos = Position.LEFT)
 	{
 		if (color != actColor)
@@ -92,6 +130,30 @@ public static class Display
 		actLines.Add(line);
 	}
 
+	static public void wait()
+	{
+		sendToConsole();
+		Console.ReadKey(true);
+	}
+
+	static public string getInput(ConsoleColor color = ConsoleColor.White)
+	{
+		string input;
+
+		sendToConsole();
+		Console.ForegroundColor = color;
+		input = Console.ReadLine();
+		if (color != actColor)
+			currentIndex += 2;
+		else
+			currentIndex++;
+		write("  " + input + Environment.NewLine, color);
+		Console.ForegroundColor = actColor;
+
+		return input;
+	}
+
+	// Internal methods
 	static private void sendToConsole_raw()
 	{
 		if (currentIndex == 0)
@@ -215,57 +277,5 @@ public static class Display
 		Console.MoveBufferArea(0, hp, wo, ho, Console.WindowWidth - wo, 0);
 
 		return Math.Max(hp, ho);
-	}
-
-	static public void wait()
-	{
-		sendToConsole();
-		Console.ReadKey(true);
-	}
-
-	static public string string_input(ConsoleColor color = ConsoleColor.White)
-	{
-		string input;
-
-		sendToConsole();
-		Console.ForegroundColor = color;
-		Console.SetCursorPosition(2, Console.CursorTop);
-		input = Console.ReadLine();
-		if (color != actColor)
-			currentIndex += 2;
-		else
-			currentIndex++;
-		write("  " + input + Environment.NewLine, color);
-		Console.ForegroundColor = actColor;
-
-		return input;
-	}
-
-	static public void resetMode()
-	{
-		wait();
-		mode = lastMode;
-		currentIndex = 0;
-	}
-
-	static public void setFightMode(Player p, Personage opp)
-	{
-		mode = Mode.FIGHT;
-		player = p;
-		opponent = opp;
-
-		fightLines.Clear();
-	}
-
-	static public void newFightScreen()
-	{
-		fightLines.Clear();
-		currentIndex = 0;
-	}
-
-	static public void SetStoryMode()
-	{
-		if (actualMode != Mode.STORY)
-			mode = Mode.STORY;
 	}
 }

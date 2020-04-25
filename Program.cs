@@ -6,16 +6,26 @@ namespace Humans_and_Monsters
     {
         static void Main(string[] args)
         {
-            Display.title();
-            
-            // Start a new game
-            Game game = new Game();
+            string userInput = "Y";
+            bool continueProg = true;
 
-            // Display end of the program
-            Display.write("The game is now over." + Environment.NewLine);
-            Display.write("Press any key to quit." + Environment.NewLine);
-            Display.write(Environment.NewLine);
-            Display.wait();
+            while (continueProg)
+            {
+                Display.title();
+
+                // Start a new game
+                Game game = new Game();
+
+                do
+                {
+                    Display.write("Do you want to play a new game? (Y=yes, N=no) "); userInput = Display.getInput().ToUpper();
+                    if (userInput == "Y")
+                        continueProg = true;
+                    else if (userInput == "N")
+                        continueProg = false;
+                } while (userInput != "Y" && userInput != "N");
+            }
+
         }
     }
 }

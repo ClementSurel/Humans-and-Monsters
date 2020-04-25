@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public interface IFighter
 {
 	public string name { get;}
+	public ConsoleColor color { get; }
 	public bool isAlive { get; }
 	bool nextFightAction(Dice dice);
 
+	public List<string> getStats();
 	void defineTarget(IFighter opp);
 }
 
